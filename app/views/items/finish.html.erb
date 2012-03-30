@@ -1,0 +1,66 @@
+
+<br>
+<br><b><font size="5" color="#ff0000">このアイテムは既に終了しています。</font></b>
+<br><br/>
+
+<h1>出品詳細</h1>
+    <p>
+      <font style="background-color:#f5f5f5"><b>商品名:</b>
+      <%= @detail.name %>
+       </font>
+      </p>
+      
+      <p>
+        <font style="background-color:#f5f5f5">
+      <b>出品者:</b>
+      <%= @detail.user.name %>
+      </font>
+      </p>
+      
+      <p>
+        <font style="background-color:#f5f5f5">
+      <th>カテゴリー:<th>
+     <%= Item::CATEGORIES.rassoc(@detail.category)[0] %>
+     </font>
+     </p>
+      
+      <p>
+        <font style="background-color:#f5f5f5">
+      <th>締め切り期限:</th>
+      <%= @detail.dead_line.strftime("%Y/%m/%d %H:%M ") %>
+      </font>
+      </p>
+      
+      <p>
+        <font style="background-color:#f5f5f5">
+      <th>希望金額:</th>
+      <%= @detail.price %>
+      </font>
+      </p>
+      
+      <p>
+        <font style="background-color:#f5f5f5">
+      <th>詳細<th>
+     <%= @detail.detail %>
+     </font>
+     </p>
+     
+     <% @photo.each do |v|%>
+      <a id='second_image' href=<%= v[:large] %>><img src=<%=v[:small]%> alt="" /></a>
+      <% end%>
+     
+      
+    
+     <% @comments.each do |bid|%>
+     <table border="1" cellpadding="5">
+     <tr>
+       <th>ユーザー名</th>
+       <th>日付</th>
+       <th>コメント</th>
+       </tr>
+        <td><%= bid.user.name%></td>
+       <td><%= bid.created_at.strftime("%Y/%m/%d %H:%M ")%></td> 
+       <td><%= bid.comment%></td> 
+      </tr>
+       </table>
+         <%end%>

@@ -1,0 +1,41 @@
+
+My list( <%= session[:user][:name] %> さまがコメントをしたアイテム一覧です。)
+
+<% @mylist.each do |mylists|%>
+ <table border="1">
+    <tr bgcolor="#c87251">
+      <th>商品名</th>
+      <th>出品者</th>
+      <th>カテゴリー</th>
+      <th>締め切り期限</th>
+      <th>希望金額</th>
+      <th>コメント数</th>
+
+    <tr>
+      <td width="200"><%= mylists.name %></td>
+      <td width="200"><%= mylists.user.name %></td>
+      <td width="200"><%= Item::CATEGORIES.rassoc(mylists.category)[0] %></td>
+      <% if mylists.dead_line >= Time.now %>
+      <td width="300"><%= mylists.dead_line.strftime("%Y/%m/%d %H:%M ") %></td>
+      <% else%>
+      <td width="300"><%= mylists.dead_line.strftime("%Y/%m/%d %H:%M ") %><b><font color="#ff0000">終了</font></b></td>
+      <% end%>
+      <td width="200"><%= mylists.price %></td>
+      <td width="200"><%= mylists.bids.count %></td>
+       <% if mylists.dead_line >= Time.now%>
+      <td><%= button_to "detail", :controller => "top", :action => "detail", :id => mylists.id  %>
+        <% else %>
+      <td><%= button_to "detail", :controller => "items", :action => "finish", :id => mylists.id  %>
+        <% end %>
+    </tr>
+  </table>
+  </br>
+  </br>
+     <%end%>
+
+
+         
+
+
+   
+    

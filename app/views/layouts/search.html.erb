@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Auction</title>
+  <%= stylesheet_link_tag :all %>
+  <%= javascript_include_tag :all %>
+  <%= csrf_meta_tag %>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+  <script type="text/javascript" src="/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+  <script type="text/javascript" src="/fancybox/jquery.easing-1.3.pack.js"></script>
+  <script type="text/javascript" src="/fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
+<script type="text/javascript">
+$(document).ready(function() {
+//Activate FancyBox
+$('a#single_image').fancybox({
+'hideOnContentClick':true,
+'overlayShow':true
+});
+$('a#second_image').fancybox({
+'hideOnContentClick':true,
+'overlayShow':true
+});
+});
+
+</script>
+
+</head>
+
+<b>ようこそ<%=  session[:user] ? session[:user][:name] : "ゲスト" %>さん</b>
+
+<%= link_to('ログアウト', logout_url)  if logged_in?%>&nbsp;&nbsp;
+<%= link_to "出品する", :controller => "items", :action => "new"  %>
+<%= link_to "一覧へ", :controller => "top", :action => "index"  %>
+<%= link_to "管理ページへ", :controller => "items", :action => "admin"  %>
+<%= link_to "my-list", :controller => "top", :action => "mylist"  %>
+
+
+  <body id="wrapper">
+    <div id= "banner">
+      <%= image_tag("/picture/auction.jpeg") %>
+      </div>
+    <div id="main">
+      <div id="side">
+    <%= render 'shared/menu' %>
+      </div>
+      <div id="contents">
+       <%= yield %>
+      </div>
+    <%= render 'shared/footer' %>
+    </div>
+</body>
+</html>
+
+

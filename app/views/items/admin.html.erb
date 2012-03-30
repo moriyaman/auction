@@ -1,0 +1,46 @@
+<h3>管理ページ</h3>
+        
+<%= will_paginate @admin, :prev_label=>'«前', :next_label=>'次»' %> 
+
+<% @admin.each do |item| %>
+  <table border="1">
+    <tr bgcolor="#c87251">
+      <th>ID</th>
+      <th>商品名</th>
+      <th>出品者</th>
+      <th>カテゴリー</th>
+      <th>締め切り期限</th>
+      <th>希望金額</th>
+      <th>コメント数</th>
+      <th>詳細</th>
+      
+
+    <tr>
+      <td width="100"><%= item.id %></td>
+      <td width="300"><%= item.name %></td>
+      <td width="200"><%= item.user.name %></td>
+      <td width="200"><%= Item::CATEGORIES.rassoc(item.category)[0] %></td>
+      <% if item.dead_line >= Time.now %>
+      <td width="300"><%= item.dead_line.strftime("%Y/%m/%d %H:%M ") %></td>
+      <% else%>
+      <td width="300"><%= item.dead_line.strftime("%Y/%m/%d %H:%M ") %><b><font color="#ff0000">終了</font></b></td>
+      <% end%>
+      <td width="200"><%= item.price %> 円</td>
+      <td width="300"><%= item.bids.count %></td>
+      <% if item.dead_line >= Time.now%>
+      <td><%= button_to "detail", :controller => "top", :action => "detail", :id => item.id  %>
+        <% else %>
+      <td><%= button_to "detail", :controller => "items", :action => "finish", :id => item.id  %>
+        <% end %>
+      <td><%= button_to "編集", :controller => "items", :action => "edit", :id => item.id  %>
+        <% if item.bids.count == 0 or Time.now  >= item.dead_line %>
+         <%= button_to "削除",{ :controller => "items", :action => "destroy", :id => item.id}%></td>
+             <% end %>
+             
+    </tr>
+  </table>
+ 
+  </br>
+  </br>
+<% end %>
+

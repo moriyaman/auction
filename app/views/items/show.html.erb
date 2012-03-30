@@ -1,0 +1,33 @@
+<h2>出品ありがとうございました！</h2>
+&nbsp;&nbsp;&nbsp;&nbsp;<h3>登録内容をご確認下さい。</h3>
+<h3>さらに画像を3枚までアップロードできます。</h3></br>
+
+<b>商品名</b>
+<p><%= @item.name%></p>
+<b>カテゴリー</b>
+<p><%=Item::CATEGORIES.rassoc(@item.category)[0]%></p>
+</br>
+<b>締切日</b>
+<p><%= @item.dead_line.strftime("%Y/%m/%d %H:%M ")%></p>
+</br>
+<b>希望価格</b>
+<p><%= @item.price%>円</p>
+</br>
+<b>商品の状態</b>
+<p><%= @item.condition%></p>
+</br>
+<b>詳細</b>
+<p><%= @item.detail%></p>
+</br>
+</br>
+
+<%= form_tag({ :action => 'picture_create'}, :multipart => true) do %>
+ファイルを指定:</br>
+  <%= file_field_tag 'photos[]',{ :size => 50}%></br>
+  <%= file_field_tag 'photos[]',{ :size => 50}%></br>
+  <%= file_field_tag 'photos[]',{ :size => 50}%></br>
+  <%= hidden_field :picture, :item_id, {:value => @item.id}%> 
+  <%= submit_tag 'アップロード' %>
+  <% end %>
+ 
+  

@@ -1,0 +1,48 @@
+<h1>出品物を新規登録</h1>
+  <% if @item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@item.errors.count, "error") %> prohibited this item from being saved:</h2>
+
+      <ul>
+      <% @item.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %> 
+<% form_for(@item, :url => {:controller => "items", :action => "create"} , :html => {:multipart => true}) do |f| %>
+
+<p><%= f.label :商品名 %></p>
+<p><%= f.text_field :name %></p>
+</br>
+<p><%= f.label :カテゴリー %></p>
+<p><%= select(:item, :category, Item::CATEGORIES,:include_blank => '▼選択して下さい')%></p>
+</br>
+<p><%= f.label :締切日 %></p>
+<p><%= f.datetime_select :dead_line,:use_month_numbers => true,:end_day => Time.now.day+7,:default =>7.days.from_now, :discard_year => true  %></p>
+</br>
+<p><%= f.label :希望価格 %></p>
+<p><%= f.text_field :price %>円</p>
+</br>
+<p><%= f.label :商品の状態 %></p>
+<label><%= f.radio_button :condition, 'A(新品)',{:class =>'rd'} %>A(新品)</label>
+<label><%= f.radio_button :condition, 'B(中古だが綺麗)',{:class =>'rd'} %>B(中古だが綺麗)</label>
+<label><%= f.radio_button :condition, 'C(普通程度)',{:class =>'rd'} %>C(普通程度)</label>
+<label><%= f.radio_button :condition, 'D(やや問題あり)',{:class =>'rd'} %>D(やや問題あり)</label>
+<label><%= f.radio_button :condition, 'E(問題あり)',{:class =>'rd'} %>E(問題あり)</label>
+</br>
+</br>
+<p><%= f.label :詳細 %></p>
+<p><%= f.text_area :detail %></p>
+<br>
+<p><%= f.hidden_field :user_id, :value => session[:user][:id] %></p>
+
+
+<%= f.submit "登録" %>
+
+
+
+<% end %>
+
+
+

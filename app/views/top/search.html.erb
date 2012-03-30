@@ -1,0 +1,43 @@
+<th><b>検索結果</b></th>
+<%= will_paginate @product, :prev_label=>'«前', :next_label=>'次»' %> 
+
+<% if @product != []%>
+<% @product.each do |product|%>
+ <table border="1">
+   <tr bgcolor="#c87251">
+      <th>ID</th>
+      <th>商品名</th>
+      <th>出品者</th>
+      <th>カテゴリー</th>
+      <th>締め切り期限</th>
+      <th>希望金額</th>
+      <th>コメント数</th>
+      <th>詳細</th>
+
+    <tr>
+      <td width="100"><%= product.id %></td>
+      <td width="300"><%= product.name %></td>
+      <td width="200"><%= product.user.name %></td>
+      <td width="200"><%= Item::CATEGORIES.rassoc(product.category)[0] %></td>
+      <td width="300"><%= product.dead_line.strftime("%Y/%m/%d %H:%M ") %></td>
+      <td width="200"><%= product.price %> 円</td>
+      <td width="300"><%= product.bids.count %></td>
+      <td><%= button_to "detail", :controller => "top", :action => "detail", :id => product.id  %></td>
+    </tr>
+  </table>
+  </br>
+  </br>
+     <%end%>
+  <% else%>
+    </br>
+    </br>
+    </br>
+     <th><b>該当する商品はありませんでした。</b></th>
+     <% end%>
+     
+
+         
+
+
+   
+    

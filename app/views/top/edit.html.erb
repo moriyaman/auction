@@ -1,0 +1,25 @@
+<h1>出品物一覧</h1>
+
+<% for item in @items %>
+
+  <table border="1">
+    <tr>
+      <th>商品名</th>
+      <th>出品者</th>
+      <th>締め切り期限</th>
+      <th>希望金額</th>
+          
+    <tr>
+      <td><%=h item.name %></td>
+      <td><%=h item.user.name %></td>
+      <td><%=h item.dead_line %></td>
+      <td><%=h item.price %></td>
+      
+    </tr>
+  </table>
+
+<%= button_to "編集", :controller => "top", :action => "edit", :id => item.id   %>
+  </br>
+  </br>
+
+<% end %>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Auction</title>
+  <%= stylesheet_link_tag :all %>
+  <%= javascript_include_tag :defaults %>
+  <%= csrf_meta_tag %>
+</script>
+</head>
+
+<b>ようこそ<%=  session[:user] ? session[:user][:name] : "ゲスト" %>さん</b>
+
+<% if logged_in?%>
+<%= link_to('ログアウト', logout_url)  %>
+<% else%>
+<%= link_to '新規登録', :controller => "top",:action => "newuser" %>
+<% end %>
+
+<%= yield %>
+
+</html>
+

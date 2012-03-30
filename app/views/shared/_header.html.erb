@@ -1,0 +1,8 @@
+<div id="header">
+<% form_tag  :controller => "top",:action => 'search', :method => 'get' do %>
+<%= select(:item, :category, Item::CATEGORIES,:include_blank => '▼ALL')%>
+<%= label_tag 'name','product name?:' %>
+<%= text_field_tag 'name' %>　
+<%= submit_tag "Search" %>
+<% end %>
+</div>

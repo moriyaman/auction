@@ -1,0 +1,20 @@
+<h3>出品情報の変更が完了しました！</h3>
+
+<b>商品名</b>
+<p><%=@item.name%></p>
+<b>カテゴリー</b>
+<p><%=Item::CATEGORIES.rassoc(@item.category)[0]%></p>
+</br>
+<b>締切日</b>
+<p><%=@item.dead_line.strftime("%Y/%m/%d %H:%M ")%></p>
+</br>
+<b>希望価格</b>
+<p><%=@item.price%></p>
+</br>
+<b>商品の状態</b>
+<p><%=@item.condition%></p>
+</br>
+<b>詳細</b>
+<p><%=@item.detail%></p>
+</br>
+

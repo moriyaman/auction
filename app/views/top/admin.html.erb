@@ -1,0 +1,26 @@
+<h1>出品物一覧</h1>
+
+<% for item in @admin %>
+  <table border="1">
+    <tr>
+      <th>商品名</th>
+      <th>出品者</th>
+      <th>締め切り期限</th>
+      <th>コメント数</th>
+      
+
+    <tr>
+      <td><%=h item.name %></td>
+      <td><%=h item.dead_line %></td>
+      <td><%=h item.user.name %></td>
+      <td><%=h item.bids.count %></td>
+
+    </tr>
+  </table>
+  <%= button_to "編集", :controller => "top", :action => "edit", :id => item.id  %>
+  <%= button_to "削除", :controller => "top", :action => "delete", :id => item.id  %>
+  </br>
+  </br>
+<% end %>
+
+<%= link_to "管理ページへ", :controller => "top", :action => "admin" %>

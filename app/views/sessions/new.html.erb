@@ -1,0 +1,20 @@
+<!--
+<form action="/sessions/create" method="POST">
+  <label for="mail_addr">メールアドレス</label><br />
+  <input id="mail_addr" name="mail_address" type="text" /> <br />
+  <label for="passwd">パスワード</label> <br />
+  <input name="authenticity_token" value="" type="hidden" /> <br />
+  <input id="passwd" name="password" type="text" /> <br />
+  <input type="submit" value="ログイン" />
+  <input type="hidden" name="authenticity_token" value="form_authenticity_token" />
+</form>
+-->
+
+<% form_tag :action => 'create' do %>
+  <br />
+  メールアドレス<br />
+  <%= text_field_tag :mail_address %><br />
+  パスワード<br />
+  <%= password_field_tag :password %><br /><br />
+  <%= submit_tag 'ログイン' %>
+<% end %>

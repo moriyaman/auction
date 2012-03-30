@@ -1,0 +1,21 @@
+<h1>出品物を新規登録</h1>
+
+<% form_for @user, :url => {:controller => "top", :action => "create_user"} do |f| %>
+
+<p><%= f.label :ユーザー名 %></p>
+<p><%= f.text_field :name %></p>
+</br>
+<p><%= f.label :アドレス %></p>
+<p><%= f.text_field :mail_address %></p>
+</br>
+<p><%= f.label :パスワード %></p>
+<p><%= f.text_field :password %></p>
+</br>
+<%= f.submit "登録" %>
+
+
+
+<% end %>
+
+
+

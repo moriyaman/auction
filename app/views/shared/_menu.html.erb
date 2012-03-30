@@ -1,0 +1,17 @@
+<div id="menu">
+  <% Item::CATEGORIES.each do |category| %>
+    <%= link_to category[0], :controller => "top", :action => "side_search" , :id => category[1]%>(<%@item =Item.where('category = ?',category[1])%><%@count = @item.find(:all,:conditions => ['items.dead_line >= ?', Time.now])%><%=@count.count%>)<br>
+  <% end %>
+<br>
+<br><br/>
+<br><br/>
+<br><br/>
+<br><br/>
+<br>
+<br><br/>
+<br><br/>
+<br><br/>
+<br><br/>
+
+
+</div>

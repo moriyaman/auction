@@ -1,0 +1,84 @@
+
+<h1>出品詳細</h1>
+    <p>
+      </br>
+      <b>商品名:</b>
+      <%= @detail.name %>
+      </p>
+      
+      <p>
+      <b>出品者:</b>
+      <%= @detail.user.name %>
+      </p>
+      
+      <p>
+      <th>カテゴリー:<th>
+     <%= Item::CATEGORIES.rassoc(@detail.category)[0] %>
+   　　</p>
+      
+      <p>
+      <th>締め切り期限:</th>
+      <%= @detail.dead_line.strftime("%Y/%m/%d %H:%M ") %>
+      </p>
+      
+      <% a= (@detail.dead_line - Time.now).to_i %>
+      <% b_minutes= (a/60).to_i %>
+      <% b_hours = (b_minutes/60).to_i%>
+      <% days = (b_hours/24).to_i %>
+      <% minutes= b_minutes -  b_hours*60 %>
+      <% hours = b_hours - days*24%>
+      <div id= 'result'>残り時間 : <%= days%>日と<%= hours%>時間<%= minutes%>分</div>
+      
+            
+      <p>
+      <th>希望金額:</th>
+      <%= @detail.price %>円
+      </p>
+      
+      <p>
+      <th>商品の状態:</th>
+      <%= @detail.condition %>
+      </p>
+
+      <p>
+        <th>詳細<th>
+        <%=@detail.detail %>
+      </p>
+    
+     
+     <% @photo.each do |v|%>
+     <a id='second_image' href=<%= v[:large] %>><img src=<%=v[:small]%> alt="" /></a>
+      <% end%>
+     
+ <%= will_paginate @comments, :prev_label=>'«前', :next_label=>'次»' %>    
+    
+     <% @comments.each do |bid|%>
+     <table border="1" cellpadding="5">
+     <tr>
+       <th>ユーザー名</th>
+       <th>日付</th>
+       <th>コメント</th>
+       </tr>
+        <td><%= bid.user.name%></td>
+       <td><%= bid.created_at.strftime("%Y/%m/%d %H:%M ")%></td> 
+       <td><%= bid.comment%></td> 
+      </tr>
+       </table>
+    
+    <% if bid.user_id == session[:user][:id] %>
+   <td><%= button_to "削除",:action => "comment_destroy", :id => bid.id%></td>
+     <%end%>
+     <%end%>
+     
+     
+     
+　　　<%= form_tag({ :action =>'create'}) do %>
+     <div class="field">
+     	 <%= label :bid, :comment%><br />
+     	 <%= text_area :bid, :comment, {:size=>"60x10"}%>
+     	 <%= hidden_field :bid, :item_id, {:value => @detail.id}%> 
+     	  <%= hidden_field :bid, :user_id, {:value => session[:user][:id]}%>
+     	  <%= submit_tag '登録', :confirm => '投稿しますか？' %>
+     	 </div>
+        <%end%>
+        

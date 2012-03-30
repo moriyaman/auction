@@ -1,0 +1,28 @@
+<h1>登録内容を変更</h1>
+
+<% form_for(@item, :url => {:controller => "items", :action => "update", :id => @item.id} , :html => {:multipart => true}) do |f| %>
+
+<p><%= f.label :詳細 %></p>
+<p><%= f.text_area :detail %></p>
+<br>
+<p><%= f.hidden_field :user_id, :value => session[:user][:id] %></p>
+
+今<%=@a%>枚画像がアップされています。
+あと<%=3-@a%>枚アップできます。
+</br>
+</br> 
+ <% if @a == 0 then%>
+    <%= file_field_tag 'photos[]',{ :size => 50}%></br>
+    <%= file_field_tag 'photos[]',{ :size => 50}%></br>
+    <%= file_field_tag 'photos[]',{ :size => 50}%></br>
+ <% elsif @a ==1 then%>
+ 　　<%= file_field_tag 'photos[]',{ :size => 50}%></br>
+    <%= file_field_tag 'photos[]',{ :size => 50}%></br>
+ <% elsif @a ==2 then%>
+    <%= file_field_tag 'photos[]',{ :size => 50}%></br>
+ <% else %>
+　　画像はアップできません。
+ <% end %>
+
+<%= submit_tag "変更", :confirm => '変更しますか？' %>
+<% end %>

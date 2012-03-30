@@ -1,0 +1,14 @@
+<h1>画像をアップロード</h1>
+
+
+
+<%= form_tag({ :action =>'upload_process'}, {:multipart => true}) do %>
+     <div class="field">
+       <%= label :picture, :file_name %><br />
+       <%= text_field :bid, :file_name, {:size =>40}%>
+       <%= label :picture, :photo %><br />
+       <%= file_field :picture, :photo %>
+       <%= submit_tag '登録', :confirm => '投稿しますか？' %>
+       </div>
+        <%end%>
+       

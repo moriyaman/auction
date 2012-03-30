@@ -1,0 +1,19 @@
+
+<body>
+  
+<%= link_to "Antique", :controller => "items", :action => "edit", :id => @item.id  %></br>
+
+<% form_tag  :controller => "top",:action => 'search', :method => 'get' do %>
+<div class='field'>
+<%= select(:item, :category, Item::CATEGORIES,:include_blank => '▼ALL')%>
+<%= label_tag 'name','product name?:' %><br/>
+<%= text_field_tag 'name' %>　
+<%= submit_tag "Search" %>
+<% end %>
+</ul>
+</div>
+</body>
+
+</html>
+
+CATEGORIES=[["Antique",1],["Art", 2],["Baby",3],["Business & Industrial",4],["Cameras & Photo",5],["Cars,Boats,Vehicle & Parts",6],["Cell Phones & PDAs",7],["Clothing Shoes & Accessories",8],["Coins & Paper Money",9],["Collectibles",10],["Computers & Networking",11],["Consumer Electronics",12],["Crafts",13],["Dolls & Bears",14],["DVDs & Moneys",15],["Entertainment Memorabilia",16],["Gift Cards & Coupons",17],["Health Beauty",18],["Home & Garden",19],["Jewelry & Watches",20],["Music",21],["Pet Supplies",22],["Pottery & Glass",23],["Real Estate",24],["Sporting Goods",25],["Stamps & Tickets",26],["Toys & Hobbies",27],["Travel",28],["Video Games",29],["Everything Else",30]]

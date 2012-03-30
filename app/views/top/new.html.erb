@@ -1,0 +1,25 @@
+<h1>出品物を新規登録</h1>
+
+<% form_for @items, :url => {:controller => "top", :action => "create"}  do |f| %>
+
+  <table border="1">
+    <tr>
+      <th><%= f.label :商品名 %></th>
+      <th><%= f.label :締切り日 %></th>
+      <th><%= f.label :詳細 %></th>
+      <th></br></th>
+          
+    <tr>
+      <td><%= f.text_field :item %></td>
+      <td><%= f.select_date :dead_line %></td>
+      <td><%= f.text_field :detail %></td>
+      
+      
+    </tr>
+  </table>
+
+<%= button_to "編集", :controller => "top", :action => "edit", :id => item.id   %>
+  </br>
+  </br>
+
+<% end %>
